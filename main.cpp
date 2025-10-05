@@ -10,8 +10,7 @@ struct Node{
     Node *next;
 };
 
-class Movie
-{
+class Movie{
 private:
     string movieTitle;
     Node *head = nullptr;
@@ -32,7 +31,7 @@ public:
         head = newNode;
     }
 
-    void loadReview(ifstream in, int howMany){
+    void loadReview(ifstream &in, int howMany){
         string line;
         int counter = 0;
 
@@ -44,6 +43,8 @@ public:
     }
 
     void print() {
+        cout<< "Movie: " << movieTitle << "\n";
+
         Node* curr = head;
         float sum = 0.0;
         int count = 0;
@@ -64,15 +65,15 @@ public:
         Node* nxt = head->next;
         delete head;
         head = nxt;
+        }
     }
-    
 };
 
 int main(){
 
-    std::ifstream fin("Movies.txt");
+    ifstream fin("Movies.txt");
     if (!fin) {
-        std::cerr << "Error: could not open comments.txt\n";
+        cerr << "Error: could not open comments.txt\n";
         return 1;
     }
 
@@ -81,13 +82,16 @@ int main(){
     movies[1].setTitle("Interstellar");
     movies[2].setTitle("Spirited Away");
     movies[3].setTitle("The Dark Knight");
+
+    int reviewPerMovie = 3;
+    for (auto &m : movies) {
+        m.loadReview(fin, reviewPerMovie);
+    }
     
-    std::cout << "=== Movie Reviews ===\n\n";
-    for (const auto& m : movies) {
+    cout << "=== Movie Reviews ===\n\n";
+    for (auto &m : movies) {
         m.print();
     }
-
-
 
     return 0;
 }
