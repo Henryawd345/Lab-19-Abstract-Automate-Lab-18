@@ -16,6 +16,11 @@ class Movie
 private:
     string movieTitle;
     Node *head = nullptr;
+
+    float randomRatingOneDecimal() {
+    int x = 10 + (rand() % 40); 
+    return x / 10.0f;                  
+} 
 public:
     string getTitle() {return movieTitle;}
     void setTitle(string t) {movieTitle = t;}
@@ -28,7 +33,12 @@ public:
         head = newNode;
     }
 
-    
+    void loadReview(ifstream in, int howMany){
+
+
+
+    }
+
  
     
 };
