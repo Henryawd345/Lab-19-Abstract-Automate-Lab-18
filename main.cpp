@@ -60,13 +60,7 @@ public:
         if (count) cout << "  > Average: " << (sum / count) << "\n";
     }
 
-    void clear() {
-        while (head) {
-        Node* nxt = head->next;
-        delete head;
-        head = nxt;
-        }
-    }
+    
 };
 
 int main(){
