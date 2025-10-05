@@ -43,7 +43,28 @@ public:
         }
     }
 
- 
+    void print() {
+        Node* curr = head;
+        float sum = 0.0;
+        int count = 0;
+        int i = 1;
+
+    while (curr)
+        {
+            cout<<"  > Review #" << i++ <<"  Rating:  " << curr->rating <<"  Comment:  " <<curr->comment <<"\n";
+            sum += curr->rating;
+            count++;
+            curr = curr->next;
+        }
+        if (count) cout << "  > Average: " << (sum / count) << "\n";
+    }
+
+    void clear() {
+        while (head) {
+        Node* nxt = head->next;
+        delete head;
+        head = nxt;
+    }
     
 };
 
@@ -61,7 +82,10 @@ int main(){
     movies[2].setTitle("Spirited Away");
     movies[3].setTitle("The Dark Knight");
     
-
+    std::cout << "=== Movie Reviews ===\n\n";
+    for (const auto& m : movies) {
+        m.print();
+    }
 
 
 
