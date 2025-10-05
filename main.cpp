@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <array>
 
 using namespace std;
 
@@ -17,7 +16,7 @@ private:
     string movieTitle;
     Node *head = nullptr;
 
-    float randomRatingOneDecimal() {
+    float randomRating() {
     int x = 10 + (rand() % 40); 
     return x / 10.0f;                  
 } 
@@ -34,9 +33,14 @@ public:
     }
 
     void loadReview(ifstream in, int howMany){
+        string line;
+        int counter = 0;
 
-
-
+        while(counter < howMany && getline(in,line)){
+            if (line.empty()) continue;
+            addReview(randomRating(),line);
+            counter++;
+        }
     }
 
  
@@ -44,6 +48,22 @@ public:
 };
 
 int main(){
+
+    std::ifstream fin("Movies.txt");
+    if (!fin) {
+        std::cerr << "Error: could not open comments.txt\n";
+        return 1;
+    }
+
+    vector<Movie> movies(4);
+    movies[0].setTitle("Inception");
+    movies[1].setTitle("Interstellar");
+    movies[2].setTitle("Spirited Away");
+    movies[3].setTitle("The Dark Knight");
+    
+
+
+
 
     return 0;
 }
